@@ -61,7 +61,6 @@ Download the database from the [WJazzD Repository](https://jazzomat.hfm-weimar.d
 1. **Purpose**: Extracts musical patterns from solos.
 2. **Installation**:
    - Download the MeloSpy Suite and add the Melpat executable to your system PATH.
-   ```bash
    chmod +x /path/to/melpat
 3. **Configuration**:
 The melpat_config.yaml file is located in the config directory. This file contains necessary parameters for running the tool. It can be adjust settings in the file as required for your analysis.
@@ -74,7 +73,8 @@ Output Example:
 | id                                | start | N | onset  | dur   | metricalposition | value               | freq | prob100 |
 |-----------------------------------|-------|---|--------|-------|------------------|---------------------|------|---------|
 | ArtPepper_Anthropology_FINAL.sv   | 0     | 5 | 10.343 | 1.02  | 4.1.0.1.1        | [65,63,58,61,63]    | 5    | 0.003   |
-| ArtPepper_Anthropology_FINAL.sv   | 1     | 5 | 10.638 | 1.103 | 4.4.0.2.1        | [63,58,61,63,58]    | 9    | 0.005   |5
+| ArtPepper_Anthropology_FINAL.sv   | 1     | 5 | 10.638 | 1.103 | 4.4.0.2.1        | [63,58,61,63,58]    | 9    | 0.005   |
+
 ------------
 
 Analysis Pipeline
@@ -85,7 +85,6 @@ In this stage the data is extracted from the sqLITE3 database file (wjazzd.db) t
 ### **Run the Preprocessing scripts**
 
 Run all preprocessing scripts in sequence:
-```bash
 python src/preprocessing/run_preprocessing.py
 
 ### **Preprocessing Steps**
@@ -136,7 +135,6 @@ Processed data and results will be saved in the `data/output/` directory.
      - `MS_sequences_patterns.py`: Processes patterns.
      - `MS_sequences_solos.py`: Processes solos.
    - **Command**:
-     ```bash
      python src/preprocessing/MS_sequences_patterns.py
      python src/preprocessing/MS_sequences_solos.py
      ```
@@ -147,7 +145,6 @@ Processed data and results will be saved in the `data/output/` directory.
      - `run_mongeau_sankoff_patterns.py`: Aligns patterns.
      - `run_mongeau_sankoff_solos.py`: Aligns solos.
    - **Command**:
-     ```bash
      python src/alignment/run_mongeau_sankoff_patterns.py
      python src/alignment/run_mongeau_sankoff_solos.py
      ```
@@ -169,7 +166,6 @@ The resulting files are the basis for generating similarity matrices.
    - Generates a matrix that defines constraints for pattern influences.
    - **Script**: `priors_matrix_patterns.py`
    - **Command**:
-     ```bash
      python src/bayes/priors_matrix_patterns.py
      ```
 
@@ -177,7 +173,6 @@ The resulting files are the basis for generating similarity matrices.
    - Generates a matrix that defines constraints for solo influences.
    - **Script**: `priors_matrix_solos.py`
    - **Command**:
-     ```bash
      python src/bayes/priors_matrix_solos.py
      ```
 
@@ -215,7 +210,6 @@ These matrices serve as input for the MCMC sampling stage, refining the networks
      - `gen_ini_net_patterns_dir.py`: Generates a network for patterns.
      - `gen_ini_net_solos_dir.py`: Generates a network for solos.
    - **Command**:
-     ```bash
      python src/network/generate_initial_network.py
      ```
 
@@ -235,9 +229,7 @@ These matrices serve as input for the MCMC sampling stage, refining the networks
      - `priors_matrix_patterns.py`: Generates prior matrix for patterns.
      - `priors_matrix_solos.py`: Generates prior matrix for solos.
    - **Command**:
-     ```bash
      python src/bayes/generate_prior_matrices.py
-     ```
 
 2. **Run MCMC Sampling**:
    - Refines the initial networks using Bayesian inference by incorporating the prior and similarity matrices.
@@ -245,10 +237,8 @@ These matrices serve as input for the MCMC sampling stage, refining the networks
      - `mcmc_sampling_patterns.py`
      - `mcmc_sampling_solos.py`
    - **Command**:
-     ```bash
      python src/bayes/mcmc_sampling_patterns.py
      python src/bayes/mcmc_sampling_solos.py
-     ```
 
 ---
 
@@ -271,7 +261,6 @@ These matrices serve as input for the MCMC sampling stage, refining the networks
 - Analyzes the refined pattern and solo networks to calculate metrics and generate adjacency lists.
 - **Script**: `network_patterns_analysis.py`
 - **Command**:
-  ```bash
   python src/network/network_patterns_analysis.py
 
 ## Prior Matrices Generation
@@ -284,17 +273,14 @@ These matrices serve as input for the MCMC sampling stage, refining the networks
    - Generates a matrix that defines constraints for pattern influences.
    - Script: `priors_matrix_patterns.py`
    - **Command**:
-     ```bash
      python src/bayes/priors_matrix_patterns.py
-     ```
+
 
 2. **Generate Prior Matrices for Solos**:
    - Generates a matrix that defines constraints for solo influences.
    - Script: `priors_matrix_solos.py`
    - **Command**:
-     ```bash
      python src/bayes/priors_matrix_solos.py
-     ```
 
 ### Outputs:
 - **Patterns Prior Matrix**: `data/output/priors_matrix_patterns.csv`
@@ -321,7 +307,6 @@ These matrices serve as input for the MCMC sampling stage, refining the networks
      - `gen_ini_net_solos_dir.py`: Generates a network for solos.
 
    **Command**:
-   ```bash
    python src/network/generate_initial_network.py
 
 ---
@@ -331,7 +316,7 @@ These matrices serve as input for the MCMC sampling stage, refining the networks
 Include a section describing MCMC, its purpose, and its implementation.
 
 ##### **MCMC Sampling Section**
-```markdown
+
 ## MCMC Sampling
 
 **Purpose**: Use Bayesian inference and MCMC to refine the networks by incorporating prior constraints (e.g., temporal order, stylistic similarities).
@@ -344,9 +329,8 @@ Include a section describing MCMC, its purpose, and its implementation.
      - `priors_matrix_patterns.py`: Generates prior matrix for patterns.
      - `priors_matrix_solos.py`: Generates prior matrix for solos.
    - **Command**:
-     ```bash
      python src/bayes/generate_prior_matrices.py
-     ```
+
 
 2. **Run MCMC Sampling**:
    - Refines the initial networks using Bayesian inference passing the prior matrices and similarity matrices
@@ -354,10 +338,9 @@ Include a section describing MCMC, its purpose, and its implementation.
      - `mcmc_sampling_patterns.py`
      - `mcmc_sampling_solos.py`
    - **Command**:
-     ```bash
      python src/bayes/mcmc_sampling_patterns.py
      python src/bayes/mcmc_sampling_solos.py
-     ```
+
 
 3. **Output**:
    - Refined pattern network: `data/output/mcmc_results/pattern_network_refined.csv`
@@ -372,23 +355,22 @@ Include a section describing MCMC, its purpose, and its implementation.
 ### **Steps**
 
 #### 1. Perform Network Analysis for Patterns and Solos
+
 - Analyzes the pattern networks and calculate metrics
 - **Script**: `network_patterns_analysis.py`
 - **Command**:
-  ```bash
   python src/network/network_patterns_analysis.py
+
 - Display the pattern networks and metrics
 - **Command**:
-  ```bash
   python src/network/network_patterns.py
  - Analyzes solo networks and calculate metrics
 - **Script**: `network_solo_analysis.py`
+
 - **Command**:
-  ```bash
   python src/network/network_solo_analysis.py
 - Display the solo networks and metrics
 - **Command**:
-  ```bash
   python src/network/network_solos.py
 
 
