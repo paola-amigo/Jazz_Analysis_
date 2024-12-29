@@ -1,0 +1,2 @@
+parameters,avg_log_likelihood,max_log_likelihood,avg_network_size,max_network_size,std_log_likelihood,avg_degree_centrality,max_degree_centrality,num_nodes,num_edges,density
+5000_2500_1_0.2_0.1_100,-129.0589067413985,0.0,449.1814,927,76.98418363049619,0.22745098039215664,0.3214285714285714,85,812,0.11372549019607843

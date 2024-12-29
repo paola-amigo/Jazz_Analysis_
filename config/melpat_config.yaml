@@ -1,0 +1,38 @@
+---
+# Global paths and settings
+dir: /Users/paola_amigo/Desktop/Thesis/JazzSolos/data/               # Input directory for working files
+outdir: /Users/paola_amigo/Desktop/Thesis/JazzSolos/data/Patterns/   # Directory to save extracted patterns
+outfile: /Users/paola_amigo/Desktop/Thesis/JazzSolos/data/Patterns/pattern_output.csv                                         # Basic output filename for storing results
+
+# Maximum global N-Gram size (for partition or database mode)
+#maxN: 10  # Set the maximum size of N-Grams
+
+# Define the set of melodies to analyze (using database queries)
+tunes:
+  - query:
+      conditions:
+        solo_info:
+          performer: '%'  # Extract all performers
+          title: '%'      # Extract all song titles
+      display:
+        transcription_info: filename_sv  # Specify what fields to display from each melody
+      type: sv  # File type used (probably representing a specific melody format in the database)
+
+# Database connection settings
+database:
+  type: sqlite3  # Database type (SQLite3)
+  path: /Users/paola_amigo/Desktop/Thesis/JazzSolos/data/wjazzd.db  # Path to the database file
+  password: None  # No password (if your database is not password-protected)
+  use: True  # Specify to use the database for this analysis
+
+# Define requests (pattern extraction settings)
+requests:
+  # Request to extract interval patterns from all solos
+  -
+    transform: pitch      # The transformation type (interval-based extraction)
+    pattern: database        # Use Database Mode for a comprehensive analysis
+    minN: 5                # Set the minimum N-gram length to extract
+    minOccur: 5              # Minimum number of occurrences of each pattern
+    maxN: 10  # Set the maximum size of N-Grams
+    display: list            # Use 'list' mode to get a detailed CSV listing of patterns
+    simul: False             # Do not use simulated melodies
