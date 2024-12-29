@@ -69,11 +69,12 @@ Path: config/melpat_config.yaml
 Integration:
 The pattern_extraction.py script automatically references the melpat_config.yaml file during execution.
 
-Output Example: 
+Output Example:
 
-id	start	N	onset	dur	metricalposition	value	freq	prob100
-ArtPepper_Anthropology_FINAL.sv	0	5	10.343	1.02	4.1.0.1.1	[65,63,58,61,63]	5	0.003
-ArtPepper_Anthropology_FINAL.sv	1	5	10.638	1.103	4.4.0.2.1	[63,58,61,63,58]	9	0.005
+| id                                | start | N | onset  | dur   | metricalposition | value               | freq | prob100 |
+|-----------------------------------|-------|---|--------|-------|------------------|---------------------|------|---------|
+| ArtPepper_Anthropology_FINAL.sv   | 0     | 5 | 10.343 | 1.02  | 4.1.0.1.1        | [65,63,58,61,63]    | 5    | 0.003   |
+| ArtPepper_Anthropology_FINAL.sv   | 1     | 5 | 10.638 | 1.103 | 4.4.0.2.1        | [63,58,61,63,58]    | 9    | 0.005   |5
 ------------
 
 Analysis Pipeline
