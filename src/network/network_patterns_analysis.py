@@ -123,7 +123,7 @@ parameter_details = {
     for param in unique_params
 }
 
-# Add descriptions for filtered parameters
+# Add descriptions for filtered best parameters
 filtered_df["description"] = filtered_df["parameters"].map(parameter_details)
 
 # Check if descriptions were successfully added

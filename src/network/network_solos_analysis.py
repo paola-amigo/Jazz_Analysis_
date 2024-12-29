@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import networkx as nx
 import argparse
 
-# Parse command-line arguments
+# Command-line arguments
 parser = argparse.ArgumentParser(description="MCMC Network Analysis")
 parser.add_argument("--base_dir", type=str, default=os.path.dirname(os.path.abspath(__file__)), help="Base directory for relative paths")
 args = parser.parse_args()

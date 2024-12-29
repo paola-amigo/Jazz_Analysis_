@@ -3,7 +3,7 @@ import os
 import networkx as nx
 import matplotlib.pyplot as plt
 
-# Define paths
+# Define relative paths
 base_dir = os.path.dirname(os.path.abspath(__file__))
 output_dir = os.path.join(base_dir, '../../data/output/mcmc_results/')
 best_network_params_file = 'best_network_solos_params.csv'
