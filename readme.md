@@ -41,9 +41,7 @@ pip install -r requirements.txt
 
 ----------
 
-### **Required Tools**
-
-## **Dataset**
+### **Dataset**
 
 The preprocessing pipeline uses the Weimar Jazz Database (WJazzD) as the primary dataset. Ensure that the `wjazzd.db` file is available in the `data/` directory.
 
@@ -75,19 +73,14 @@ The `pattern_extraction.py` script automatically references the `melpat_config.y
 
 ------------
 
-Analysis Pipeline
+# **Analysis Pipeline**
 
 ## **Preprocessing**
 In this stage the data is extracted from the sqLITE3 database file (wjazzd.db) to create the base dataset to analyse on this project and also the external tool melpat from the Jazzomat project is used to extract patterns from the solos using the same database mentioned.
 
-### **Run the Preprocessing scripts**
+### **Steps**
 
-Run all preprocessing scripts in sequence:
-python src/preprocessing/run_preprocessing.py
-
-### **Preprocessing Steps**
-
-The `run_preprocessing.py` script executes the following steps:
+The `run_preprocessing.py` script executes the following steps in sequence:
 
 1. **Extract Data**:
    - `solos_db_extraction.py`: Extracts raw data from the `wjazzd.db` dataset.
@@ -181,17 +174,6 @@ The resulting files are the basis for generating similarity matrices.
 
 ---
 
-### **Description of Prior Matrices**
-
-- **Temporal Constraints**:
-  - Ensures that influences flow only from earlier to later recordings.
-- **Stylistic Constraints**:
-  - Adjusts influence likelihoods based on genre similarity and performer style.
-
-These matrices serve as input for the MCMC sampling stage, refining the networks using Bayesian inference.
-
----
-
 ## **Initial Network Generation**
 
 **Purpose**: Build directed network graphs for patterns and solos using similarity scores.
@@ -212,21 +194,13 @@ These matrices serve as input for the MCMC sampling stage, refining the networks
 
 ## **MCMC Sampling**
 
-**Purpose**: Use Bayesian inference and MCMC to refine the networks by incorporating prior constraints (temporal order).
+**Purpose**: Use Bayesian inference and MCMC to refine the networks by incorporating prior constraints (temporal order) to the previously generated networks.
 
 ---
 
 ### **Steps**
 
-1. **Generate Prior Matrices**:
-   - Enforce chronological constraints.
-   - **Scripts**:
-     - `priors_matrix_patterns.py`: Generates prior matrix for patterns.
-     - `priors_matrix_solos.py`: Generates prior matrix for solos.
-   - **Command**:
-     python src/bayes/generate_prior_matrices.py
-
-2. **Run MCMC Sampling**:
+**Run MCMC Sampling**:
    - Refines the initial networks using Bayesian inference by incorporating the prior and similarity matrices.
    - **Scripts**:
      - `mcmc_sampling_patterns.py`
@@ -246,105 +220,13 @@ These matrices serve as input for the MCMC sampling stage, refining the networks
 
 ## **Network Analysis and Visualisation**
 
-**Purpose**: Perform a detailed analysis of the refined networks and visualise the directional influences between patterns and solos.
-
----
-
-### **Steps**
-
-#### 1. Perform Network Analysis for Patterns and Solos
-- Analyzes the refined pattern and solo networks to calculate metrics and generate adjacency lists.
-- **Script**: `network_patterns_analysis.py`
-- **Command**:
-  python src/network/network_patterns_analysis.py
-
-## Prior Matrices Generation
-
-**Purpose**: Generate matrices that encode temporal and stylistic constraints for Bayesian inference. These matrices ensure that the directionality of influence in the networks follows logical chronological and stylistic relationships.
-
-### Steps:
-
-1. **Generate Prior Matrices for Patterns**:
-   - Generates a matrix that defines constraints for pattern influences.
-   - Script: `priors_matrix_patterns.py`
-   - **Command**:
-     python src/bayes/priors_matrix_patterns.py
-
-
-2. **Generate Prior Matrices for Solos**:
-   - Generates a matrix that defines constraints for solo influences.
-   - Script: `priors_matrix_solos.py`
-   - **Command**:
-     python src/bayes/priors_matrix_solos.py
-
-### Outputs:
-- **Patterns Prior Matrix**: `data/output/priors_matrix_patterns.csv`
-- **Solos Prior Matrix**: `data/output/priors_matrix_solos.csv`
-
-### Description of Prior Matrices:
-- **Temporal Constraints**:
-  - Ensures that influences flow only from earlier to later recordings.
-- **Stylistic Constraints**:
-  - Adjusts influence likelihoods based on genre similarity and performer style.
-
-These matrices serve as input for the MCMC sampling stage, refining the networks using Bayesian inference.
-
-## Initial Network Generation
-
-**Purpose**: Build directed network graphs for patterns and solos using similarity scores.
-
-### Steps:
-
-1. **Generate Initial Networks**:
-   - Uses alignment outputs to create directed networks.
-   - Scripts:
-     - `gen_ini_net_patterns_dir.py`: Generates a network for patterns.
-     - `gen_ini_net_solos_dir.py`: Generates a network for solos.
-
-   **Command**:
-   python src/network/generate_initial_network.py
-
----
-
-#### **3. MCMC Sampling**
-
-
-**Purpose**: Use Bayesian inference and MCMC to refine the networks by incorporating prior constraints.
-
-### Steps:
-
-1. **Generate Prior Matrices**:
-   - Enforce chronological constraint.
-   - Scripts:
-     - `priors_matrix_patterns.py`: Generates prior matrix for patterns.
-     - `priors_matrix_solos.py`: Generates prior matrix for solos.
-   - **Command**:
-     python src/bayes/generate_prior_matrices.py
-
-
-2. **Run MCMC Sampling**:
-   - Refines the initial networks using Bayesian inference passing the prior matrices and similarity matrices
-   - Scripts:
-     - `mcmc_sampling_patterns.py`
-     - `mcmc_sampling_solos.py`
-   - **Command**:
-     python src/bayes/mcmc_sampling_patterns.py
-     python src/bayes/mcmc_sampling_solos.py
-
-
-3. **Output**:
-   - Refined pattern network: `data/output/mcmc_results/pattern_network_refined.csv`
-   - Refined solo network: `data/output/mcmc_results/solo_network_refined.csv`
-
-## **Network Analysis and Visualisation**
-
 **Purpose**: Perform a detailed analysis of the derived networks and visualise the directional influences between patterns and solos.
 
 ---
 
 ### **Steps**
 
-#### 1. Perform Network Analysis for Patterns and Solos
+#### Perform Network Analysis for Patterns and Solos
 
 - Analyzes the pattern networks and calculate metrics
 - **Script**: `network_patterns_analysis.py`
@@ -354,11 +236,12 @@ These matrices serve as input for the MCMC sampling stage, refining the networks
 - Display the pattern networks and metrics
 - **Command**:
   python src/network/network_patterns.py
- - Analyzes solo networks and calculate metrics
-- **Script**: `network_solo_analysis.py`
 
+- Analyzes solo networks and calculate metrics
+- **Script**: `network_solo_analysis.py`
 - **Command**:
   python src/network/network_solo_analysis.py
+
 - Display the solo networks and metrics
 - **Command**:
   python src/network/network_solos.py
