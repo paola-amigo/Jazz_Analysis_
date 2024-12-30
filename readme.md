@@ -24,16 +24,6 @@ Ensure all project files are downloaded into a local directory. Key files includ
 
 ---
 
-### **2. Set Up the Environment**
-
-#### a. Create and activate a virtual environment:
-
-On Linux/MacOS:
-python3.96 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
----
-
 ### 2. Set Up the Environment
 
 #### a. Create and activate a virtual environment:
@@ -47,6 +37,9 @@ source .venv/bin/activate
 pip install -r requirements.txt
 
 ----------
+
+### **Required Tools**
+
 ## **Dataset**
 
 The preprocessing pipeline uses the Weimar Jazz Database (WJazzD) as the primary dataset. Ensure that the `wjazzd.db` file is available in the `data/` directory.
@@ -55,17 +48,15 @@ Download the database from the [WJazzD Repository](https://jazzomat.hfm-weimar.d
 
 ---
 
-### **Required Tools**
+#### **Melpat (Pattern extraction tool)**
+**Purpose**: Extracts patterns from solos.
 
-#### **Melpat**
-1. **Purpose**: Extracts musical patterns from solos.
-
-2. **Download and Installation**:
+**Download and Installation**:
    - **Download MeloSpySuite**: Access the [MeloSpySuite Download](https://jazzomat.hfm-weimar.de/download/download.html) to find installers for both Windows and macOS.
    - **Installation Instructions**: Refer to the [MeloSpySuite Documentation](https://jazzomat.hfm-weimar.de/documentation.html) for detailed installation steps specific to your operating system.
    - **Post-installation**: After installing MeloSpySuite, ensure the Melpat executable is added to your system's `PATH`.
 
-3. **Configuration**:
+**Configuration**:
    - The `melpat_config.yaml` file is located in the `config` directory. This file contains necessary parameters for running the tool. Adjust the settings in the file as required.
    - **Path**: `config/melpat_config.yaml`
 
@@ -156,9 +147,11 @@ Processed data and results will be saved in the `data/output/` directory.
 - Solo alignments: `data/output/aligned_solo_results_k2_{parameter}.csv`
 
 The resulting files are the basis for generating similarity matrices.
+
+
 ## **Prior Matrices Generation**
 
-**Purpose**: Generate matrices that encode temporal and stylistic constraints for Bayesian inference. These matrices ensure that the directionality of influence in the networks follows logical chronological and stylistic relationships.
+**Purpose**: Generate matrices that encode temporal constraint for Bayesian inference. These matrices ensure that the directionality of influence in the networks follows chronological logic.
 
 ---
 
@@ -312,18 +305,13 @@ These matrices serve as input for the MCMC sampling stage, refining the networks
 
 #### **3. MCMC Sampling**
 
-Include a section describing MCMC, its purpose, and its implementation.
 
-##### **MCMC Sampling Section**
-
-## MCMC Sampling
-
-**Purpose**: Use Bayesian inference and MCMC to refine the networks by incorporating prior constraints (e.g., temporal order, stylistic similarities).
+**Purpose**: Use Bayesian inference and MCMC to refine the networks by incorporating prior constraints.
 
 ### Steps:
 
 1. **Generate Prior Matrices**:
-   - Enforce chronological and stylistic constraints.
+   - Enforce chronological constraint.
    - Scripts:
      - `priors_matrix_patterns.py`: Generates prior matrix for patterns.
      - `priors_matrix_solos.py`: Generates prior matrix for solos.
