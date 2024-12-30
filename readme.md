@@ -234,6 +234,7 @@ The resulting files are the basis for generating similarity matrices.
   python src/network/network_patterns_analysis.py
 
 2. Display the pattern networks and metrics
+- **Script**: `network_patterns.py`
 - **Command**:
   python src/network/network_patterns.py
 
@@ -243,6 +244,7 @@ The resulting files are the basis for generating similarity matrices.
   python src/network/network_solo_analysis.py
 
 4. Display the solo networks and metrics
+- **Script**: `network_solos.py`
 - **Command**:
   python src/network/network_solos.py
 
