@@ -59,16 +59,20 @@ Download the database from the [WJazzD Repository](https://jazzomat.hfm-weimar.d
 
 #### **Melpat**
 1. **Purpose**: Extracts musical patterns from solos.
-2. **Installation**:
-   - Download the MeloSpy Suite and add the Melpat executable to your system PATH.
-   chmod +x /path/to/melpat
-3. **Configuration**:
-The melpat_config.yaml file is located in the config directory. This file contains necessary parameters for running the tool. It can be adjust settings in the file as required for your analysis.
-Path: config/melpat_config.yaml
-Integration:
-The pattern_extraction.py script automatically references the melpat_config.yaml file during execution.
 
-Output Example:
+2. **Download and Installation**:
+   - **Download MeloSpySuite**: Access the [MeloSpySuite Download](https://jazzomat.hfm-weimar.de/download/download.html) to find installers for both Windows and macOS.
+   - **Installation Instructions**: Refer to the [MeloSpySuite Documentation](https://jazzomat.hfm-weimar.de/documentation.html) for detailed installation steps specific to your operating system.
+   - **Post-installation**: After installing MeloSpySuite, ensure the Melpat executable is added to your system's `PATH`.
+
+3. **Configuration**:
+   - The `melpat_config.yaml` file is located in the `config` directory. This file contains necessary parameters for running the tool. Adjust the settings in the file as required.
+   - **Path**: `config/melpat_config.yaml`
+
+**Integration**:
+The `pattern_extraction.py` script automatically references the `melpat_config.yaml` file during execution.
+
+**Output Example**:
 
 | id                                | start | N | onset  | dur   | metricalposition | value               | freq | prob100 |
 |-----------------------------------|-------|---|--------|-------|------------------|---------------------|------|---------|
@@ -137,7 +141,6 @@ Processed data and results will be saved in the `data/output/` directory.
    - **Command**:
      python src/preprocessing/MS_sequences_patterns.py
      python src/preprocessing/MS_sequences_solos.py
-     ```
 
 2. **Mongeau-Sankoff Alignment**:
    - Aligns the sequences to calculate similarity scores.
@@ -147,7 +150,6 @@ Processed data and results will be saved in the `data/output/` directory.
    - **Command**:
      python src/alignment/run_mongeau_sankoff_patterns.py
      python src/alignment/run_mongeau_sankoff_solos.py
-     ```
 
 ### **Outputs**:
 - Pattern alignments: `data/output/aligned_patterns_results_k2_{parameter}.csv`
@@ -167,14 +169,12 @@ The resulting files are the basis for generating similarity matrices.
    - **Script**: `priors_matrix_patterns.py`
    - **Command**:
      python src/bayes/priors_matrix_patterns.py
-     ```
 
 2. **Generate Prior Matrices for Solos**:
    - Generates a matrix that defines constraints for solo influences.
    - **Script**: `priors_matrix_solos.py`
    - **Command**:
      python src/bayes/priors_matrix_solos.py
-     ```
 
 ---
 
@@ -211,7 +211,6 @@ These matrices serve as input for the MCMC sampling stage, refining the networks
      - `gen_ini_net_solos_dir.py`: Generates a network for solos.
    - **Command**:
      python src/network/generate_initial_network.py
-     ```
 
 ---
 
