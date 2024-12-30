@@ -8,6 +8,9 @@ This project analyses jazz solos to infer musical influences using Sequence alig
 
 - Python 3.9 or higher
 - Dependencies listed in `requirements.txt`
+- Project Files
+- Dataset
+- Melpat tool
 
 ---
 
@@ -26,13 +29,13 @@ Ensure all project files are downloaded into a local directory. Key files includ
 
 ### 2. Set Up the Environment
 
-#### a. Create and activate a virtual environment:
+#### - Create and activate a virtual environment:
 
 On Linux/MacOS:
 python3.9 -m venv .venv
 source .venv/bin/activate
 
-#### b. Install dependencies
+#### - Install dependencies
 
 pip install -r requirements.txt
 
