@@ -110,7 +110,7 @@ metrics = {
     'betweenness_centrality': list(nx.betweenness_centrality(initial_multigraph).values()),
     'closeness_centrality': list(nx.closeness_centrality(initial_multigraph).values()),
     'pagerank': list(nx.pagerank(initial_multigraph).values()),
-    'degree_centrality': list(nx.degree_centrality(initial_multigraph).values())  # Add this line
+    'degree_centrality': list(nx.degree_centrality(initial_multigraph).values())  
 }
 
 metrics_df = pd.DataFrame(metrics)
