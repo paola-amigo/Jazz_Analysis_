@@ -228,21 +228,21 @@ The resulting files are the basis for generating similarity matrices.
 
 #### Perform Network Analysis for Patterns and Solos
 
-- Analyzes the pattern networks and calculate metrics
+1. Analyzes the pattern networks and calculate metrics
 - **Script**: `network_patterns_analysis.py`
 - **Command**:
   python src/network/network_patterns_analysis.py
 
-- Display the pattern networks and metrics
+2. Display the pattern networks and metrics
 - **Command**:
   python src/network/network_patterns.py
 
-- Analyzes solo networks and calculate metrics
+3. Analyzes solo networks and calculate metrics
 - **Script**: `network_solo_analysis.py`
 - **Command**:
   python src/network/network_solo_analysis.py
 
-- Display the solo networks and metrics
+4. Display the solo networks and metrics
 - **Command**:
   python src/network/network_solos.py
 
